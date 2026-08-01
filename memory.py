@@ -2,16 +2,14 @@ import os
 import chromadb
 from sentence_transformers import SentenceTransformer
 
-# Folder for storing vector database
+
 db_folder = "memory_db"
 
 if not os.path.exists(db_folder):
     os.makedirs(db_folder)
 
-# Load embedding model only once
 model = SentenceTransformer("all-MiniLM-L6-v2")
 
-# Connect to ChromaDB
 client = chromadb.PersistentClient(path=db_folder)
 
 collection = client.get_or_create_collection(
